@@ -1,7 +1,6 @@
 from collections import Counter
 
 
-#  Неверно на тесте
 def longestPalindrome(s):
     """
     :type s: str
@@ -9,15 +8,16 @@ def longestPalindrome(s):
     """
     length = 0
     chars = Counter(list(s))
-    getOdd = False
+    getOddWhole = False
     for letter, repeat in chars.items():
         if repeat % 2 == 0:
             length += repeat
         else:
-            if not getOdd:
+            if getOddWhole:
+                length += repeat - 1
+            else:
                 length += repeat
-                getOdd = True
-    print(chars)
+                getOddWhole = True
     return length
 
 
