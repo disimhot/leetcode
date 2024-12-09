@@ -16,11 +16,6 @@ def generate_dijkstra_input_format(n, density=0.3, max_weight=10000):
     matrix = [[0 if i == j else (random.randint(1, max_weight) if random.random() < density else 0)
                for j in range(n)] for i in range(n)]
 
-    # Симметричность графа (для неориентированного графа)
-    for i in range(n):
-        for j in range(i + 1, n):
-            matrix[j][i] = matrix[i][j]
-
     return matrix
 
 
@@ -86,7 +81,7 @@ def benchmark(func):
         results.append(end - start)
     return results
 
-# print('time for heap deikstra:', benchmark(deikstra))
+print('time for heap deikstra:', benchmark(deikstra))
 # 10000 0.1 5.583 - разреженные графы
 # 10000 0.5 10.019 - разреженные графы
 # 5000 0.9 3.585 - полные графы
